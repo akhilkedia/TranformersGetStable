@@ -1,0 +1,22 @@
+Original bert baseline code
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Author:    Author Name <email@address.com>
+# Date:      Thu Nov 30 00:33:39 2023 +0900
+#
+# On branch repro_bert
+# Changes to be committed:
+#	modified:   README.md
+#	new file:   download_dataset.py
+#	new file:   examples/run_mnli.sh
+#	new file:   examples/run_qqp.sh
+#	new file:   examples/run_race.sh
+#	modified:   megatron/data/dataset_utils.py
+#	modified:   megatron/model/bert_model.py
+#	modified:   megatron/model/transformer.py
+#	modified:   megatron/model/utils.py
+#	new file:   prepare_data.sh
+#	new file:   run_bert_wiki.sh
+#

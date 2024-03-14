@@ -1,0 +1,23 @@
+plot xavier DSLM propagation figures
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Author:    Author Name <email@address.com>
+# Date:      Fri Feb 2 03:57:45 2024 +0900
+#
+# On branch repro_bert
+# Changes to be committed:
+#	new file:   Preln_backward.png
+#	modified:   README.md
+#	modified:   examples/run_qqp.sh
+#	new file:   make_figs.sh
+#	modified:   megatron/arguments.py
+#	modified:   megatron/model/bert_model.py
+#	modified:   megatron/model/language_model.py
+#	modified:   megatron/model/transformer.py
+#	modified:   megatron/model/utils.py
+#	modified:   megatron/training.py
+#	new file:   postln_backward.png
+#	new file:   preln_forward.png
+#
