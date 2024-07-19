@@ -1,8 +1,10 @@
 ## How to plot the images
 
-Run the file `make_figs.sh` - it will make xavier figures `preln_forward.png`, `preln_backward.png` and `postln_backward.png` and exit.
+Run the file [make_figs.sh](make_figs.sh) - it will make DeepScaleLM figures [preln_forward.png](preln_forward.png), [preln_backward.png](preln_backward.png) and [postln_backward.png](postln_backward.png) and exit.
 
 These files are already included, delete these `.png` files to recreate.
+
+You can rename the folder [.git.bak](.git.bak) to [.git](.git) to see the log/diff from upstream megatron code for this implementation.
 
 ## Original MEgatron README
 
@@ -38,30 +40,31 @@ The following table shows both model (MFU) and hardware (HFU) FLOPs utilization 
 | 1T    | 56.3% | 57.0% |
 
 # Contents
-   * [Contents](#contents)
-   * [Setup](#setup)
-      * [Downloading Checkpoints](#downloading-checkpoints)
-   * [Usage](#usage)
-   * [Training](#training)
-      * [Data Preprocessing](#data-preprocessing)
-      * [BERT Pretraining](#bert-pretraining)
-      * [GPT Pretraining](#gpt-pretraining)
-      * [T5 Pretraining](#t5-pretraining)
-      * [Distributed Pretraining](#distributed-pretraining)
-      * [Activation Checkpointing and Recomputation](#activation-checkpointing-and-recomputation)
-      * [Distributed Optimizer](#distributed-optimizer)
-      * [GPT-3 Example](#gpt-3-example)
-   * [Evaluation and Tasks](#evaluation-and-tasks)
-      * [GPT Text Generation](#gpt-text-generation)
-      * [GPT Evaluation](#gpt-evaluation)
-         * [WikiText Perplexity Evaluation](#wikitext-perplexity-evaluation)
-         * [LAMBADA Cloze Accuracy](#lambada-cloze-accuracy)
-      * [BERT Task Evaluation](#bert-task-evaluation)
-         * [RACE Evaluation](#race-evaluation)
-         * [MNLI Evaluation](#mnli-evaluation)
-   * [Datasets](#datasets)
-      * [Collecting Wikipedia Training Data](#collecting-wikipedia-training-data)
-      * [Collecting GPT Webtext Data](#collecting-gpt-webtext-data)
+- [Contents](#contents)
+- [Setup](#setup)
+  - [Downloading Checkpoints](#downloading-checkpoints)
+- [Usage](#usage)
+- [Training](#training)
+  - [Data Preprocessing](#data-preprocessing)
+  - [BERT Pretraining](#bert-pretraining)
+  - [GPT Pretraining](#gpt-pretraining)
+  - [T5 Pretraining](#t5-pretraining)
+  - [Distributed Pretraining](#distributed-pretraining)
+  - [Activation Checkpointing and Recomputation](#activation-checkpointing-and-recomputation)
+  - [Distributed Optimizer](#distributed-optimizer)
+  - [GPT-3 Example](#gpt-3-example)
+- [Evaluation and Tasks](#evaluation-and-tasks)
+  - [GPT Text Generation](#gpt-text-generation)
+    - [Detoxify GPT via Self-generation](#detoxify-gpt-via-self-generation)
+  - [GPT Evaluation](#gpt-evaluation)
+    - [WikiText Perplexity Evaluation](#wikitext-perplexity-evaluation)
+    - [LAMBADA Cloze Accuracy](#lambada-cloze-accuracy)
+  - [BERT Task Evaluation](#bert-task-evaluation)
+    - [RACE Evaluation](#race-evaluation)
+    - [MNLI Evaluation](#mnli-evaluation)
+- [Datasets](#datasets)
+  - [Collecting Wikipedia Training Data](#collecting-wikipedia-training-data)
+  - [Collecting GPT Webtext Data](#collecting-gpt-webtext-data)
 
 # Setup
 We strongly recommend using the latest release of [NGC's PyTorch container](https://ngc.nvidia.com/catalog/containers/nvidia:pytorch). If you can't use this for some reason, use the latest pytorch, cuda, nccl, and NVIDIA [APEX](https://github.com/NVIDIA/apex#quick-start) releases.  Data preprocessing requires [NLTK](https://www.nltk.org/install.html), though this is not required for training, evaluation, or downstream tasks.

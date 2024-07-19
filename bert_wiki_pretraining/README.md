@@ -4,6 +4,8 @@
 1. Run the file `run_bert_wiki.sh` to run the pretraining.
 1. Run the files `examples/run_mnli.sh`, `examples/run_qqp.sh`, `examples/run_race.sh` to run finetuning.
 
+You can rename the folder [.git.bak](.git.bak) to [.git](.git) to see the log/diff from upstream megatron code for this implementation.
+
 ## Original MEgatron README
 
 Megatron ([1](https://arxiv.org/pdf/1909.08053.pdf), [2](https://arxiv.org/pdf/2104.04473.pdf), and [3](https://arxiv.org/pdf/2205.05198)) is a large, powerful transformer developed by the Applied Deep Learning Research team at NVIDIA. This repository is for ongoing research on training large transformer language models at scale. We developed efficient, model-parallel ([tensor](https://arxiv.org/pdf/1909.08053.pdf), [sequence](https://arxiv.org/pdf/2205.05198), and [pipeline](https://arxiv.org/pdf/2104.04473.pdf)), and multi-node pre-training of transformer based models such as [GPT](https://arxiv.org/abs/2005.14165), [BERT](https://arxiv.org/pdf/1810.04805.pdf), and [T5](https://arxiv.org/abs/1910.10683) using mixed precision.
@@ -38,30 +40,31 @@ The following table shows both model (MFU) and hardware (HFU) FLOPs utilization 
 | 1T    | 56.3% | 57.0% |
 
 # Contents
-   * [Contents](#contents)
-   * [Setup](#setup)
-      * [Downloading Checkpoints](#downloading-checkpoints)
-   * [Usage](#usage)
-   * [Training](#training)
-      * [Data Preprocessing](#data-preprocessing)
-      * [BERT Pretraining](#bert-pretraining)
-      * [GPT Pretraining](#gpt-pretraining)
-      * [T5 Pretraining](#t5-pretraining)
-      * [Distributed Pretraining](#distributed-pretraining)
-      * [Activation Checkpointing and Recomputation](#activation-checkpointing-and-recomputation)
-      * [Distributed Optimizer](#distributed-optimizer)
-      * [GPT-3 Example](#gpt-3-example)
-   * [Evaluation and Tasks](#evaluation-and-tasks)
-      * [GPT Text Generation](#gpt-text-generation)
-      * [GPT Evaluation](#gpt-evaluation)
-         * [WikiText Perplexity Evaluation](#wikitext-perplexity-evaluation)
-         * [LAMBADA Cloze Accuracy](#lambada-cloze-accuracy)
-      * [BERT Task Evaluation](#bert-task-evaluation)
-         * [RACE Evaluation](#race-evaluation)
-         * [MNLI Evaluation](#mnli-evaluation)
-   * [Datasets](#datasets)
-      * [Collecting Wikipedia Training Data](#collecting-wikipedia-training-data)
-      * [Collecting GPT Webtext Data](#collecting-gpt-webtext-data)
+- [Contents](#contents)
+- [Setup](#setup)
+  - [Downloading Checkpoints](#downloading-checkpoints)
+- [Usage](#usage)
+- [Training](#training)
+  - [Data Preprocessing](#data-preprocessing)
+  - [BERT Pretraining](#bert-pretraining)
+  - [GPT Pretraining](#gpt-pretraining)
+  - [T5 Pretraining](#t5-pretraining)
+  - [Distributed Pretraining](#distributed-pretraining)
+  - [Activation Checkpointing and Recomputation](#activation-checkpointing-and-recomputation)
+  - [Distributed Optimizer](#distributed-optimizer)
+  - [GPT-3 Example](#gpt-3-example)
+- [Evaluation and Tasks](#evaluation-and-tasks)
+  - [GPT Text Generation](#gpt-text-generation)
+    - [Detoxify GPT via Self-generation](#detoxify-gpt-via-self-generation)
+  - [GPT Evaluation](#gpt-evaluation)
+    - [WikiText Perplexity Evaluation](#wikitext-perplexity-evaluation)
+    - [LAMBADA Cloze Accuracy](#lambada-cloze-accuracy)
+  - [BERT Task Evaluation](#bert-task-evaluation)
+    - [RACE Evaluation](#race-evaluation)
+    - [MNLI Evaluation](#mnli-evaluation)
+- [Datasets](#datasets)
+  - [Collecting Wikipedia Training Data](#collecting-wikipedia-training-data)
+  - [Collecting GPT Webtext Data](#collecting-gpt-webtext-data)
 
 # Setup
 We strongly recommend using the latest release of [NGC's PyTorch container](https://ngc.nvidia.com/catalog/containers/nvidia:pytorch). If you can't use this for some reason, use the latest pytorch, cuda, nccl, and NVIDIA [APEX](https://github.com/NVIDIA/apex#quick-start) releases.  Data preprocessing requires [NLTK](https://www.nltk.org/install.html), though this is not required for training, evaluation, or downstream tasks.
